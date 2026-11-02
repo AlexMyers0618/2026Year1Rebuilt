@@ -6,12 +6,9 @@
 <!ELEMENT primitive (zone* ) >
 <!ATTLIST primitive 
           id                ( DO_NOTHING | TRAJECTORY_DRIVE | RESET_POSITION | RESET_POSITION_NO_VISION | DRIVE_STOP_MECH) "DO_NOTHING"
-		  pathUpdateOption 	( NOTHING) "NOTHING"
 		  time				CDATA #IMPLIED
-          headingOption     CDATA "IGNORE"
-          heading           CDATA "0.0"
 		  choreoname		CDATA #IMPLIED
-		  intakeState		 ( STATE_OFF | STATE_INTAKE ) #IMPLIED
+		  driveToOption				    ( DRIVE_TO_HUB | DRIVE_OVER_BUMP | DRIVE_TO_DEPOT | DRIVE_TO_OUTPOST | DRIVE_TO_TOWER | NONE ) "NONE"
 >
 
 
