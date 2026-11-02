@@ -31,7 +31,6 @@ public:
 	enum MECHANISM_TYPE
 	{
 		UNKNOWN_MECHANISM = -1,
-		INTAKE,
 		MAX_MECHANISM_TYPES
 	};
 

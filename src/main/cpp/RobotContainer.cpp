@@ -16,7 +16,6 @@
 #include "RobotContainer.h"
 
 #include "mechanisms/configs/MechanismConfigMgr.h"
-#include "mechanisms/intake/IntakeContainer.h"
 #include "wpi/system/RobotController.hpp"
 
 RobotContainer::RobotContainer()
@@ -24,5 +23,4 @@ RobotContainer::RobotContainer()
     // Mechanism
     int32_t teamNumber = wpi::RobotController::GetTeamNumber();
     MechanismConfigMgr::GetInstance()->InitRobot((RobotIdentifier)teamNumber);
-    IntakeContainer::GetInstance()->ConfigureBindings();
 }
