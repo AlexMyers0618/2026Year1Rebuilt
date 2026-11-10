@@ -18,6 +18,7 @@
 #include <string>
 
 #include "mechanisms/configs/MechanismConfig.h"
+#include "mechanisms/configs/MechanismConfig2026.h"
 #include "mechanisms/configs/MechanismConfigMgr.h"
 #include "utils/logging/debug/Logger.h"
 
@@ -62,9 +63,13 @@ void MechanismConfigMgr::InitRobot(RobotIdentifier id)
 	case RobotIdentifier::CHASSIS_BOT_9999:
 		Logger::GetLogger()->LogData(LOGGER_LEVEL::PRINT, string("Initializing robot "), string("CHASSIS_BOT_9999"), string(""));
 		break;
+	case RobotIdentifier::YEARONEROBOT_2026:
+		Logger::GetLogger()->LogData(LOGGER_LEVEL::PRINT, string("Initializing robot "), string("YEARONEROBOT_2026"), string(""));
+		m_config = new MechanismConfig2026();
+		break;
 	case RobotIdentifier::SIM_BOT_0:
 		Logger::GetLogger()->LogData(LOGGER_LEVEL::PRINT, string("Initializing robot "), string("SIM_BOT_0"), string(""));
-		// m_config = new MechanismConfigCompBot_302();
+		m_config = new MechanismConfig2026();
 		break;
 	}
 
