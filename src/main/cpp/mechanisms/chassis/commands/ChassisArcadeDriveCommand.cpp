@@ -35,7 +35,7 @@ void ChassisArcadeDriveCommand::Init()
 
 void ChassisArcadeDriveCommand::Run()
 {
-    m_arcadeDrive.ArcadeDrive(TeleopControl::GetInstance()->GetAxisValue(TeleopControlFunctions::HOLONOMIC_DRIVE_FORWARD), TeleopControl::GetInstance()->GetAxisValue(TeleopControlFunctions::HOLONOMIC_DRIVE_ROTATE));
+    m_mechanism->GetDifferentialDrive().ArcadeDrive(TeleopControl::GetInstance()->GetAxisValue(TeleopControlFunctions::HOLONOMIC_DRIVE_FORWARD), TeleopControl::GetInstance()->GetAxisValue(TeleopControlFunctions::HOLONOMIC_DRIVE_ROTATE));
 }
 
 void ChassisArcadeDriveCommand::Exit(bool interrupted)

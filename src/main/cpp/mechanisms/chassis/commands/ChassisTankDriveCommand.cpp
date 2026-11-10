@@ -35,7 +35,7 @@ void ChassisTankDriveCommand::Init()
 
 void ChassisTankDriveCommand::Run()
 {
-    m_tankDrive.TankDrive(TeleopControl::GetInstance()->GetAxisValue(TeleopControlFunctions::TANK_DRIVE_LEFT), TeleopControl::GetInstance()->GetAxisValue(TeleopControlFunctions::TANK_DRIVE_RIGHT));
+    m_mechanism->GetDifferentialDrive().TankDrive(TeleopControl::GetInstance()->GetAxisValue(TeleopControlFunctions::TANK_DRIVE_LEFT), TeleopControl::GetInstance()->GetAxisValue(TeleopControlFunctions::TANK_DRIVE_RIGHT));
 }
 
 void ChassisTankDriveCommand::Exit(bool interrupted)
