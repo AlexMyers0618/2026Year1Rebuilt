@@ -179,7 +179,7 @@ wpi::cmd::Trigger VroomContainer::GetSpinUpLongTrigger()
                              { return mech->Method; });
     or
     */
-    return wpi::cmd::RobotModeTriggers::Teleop() && TeleopControl::GetInstance()->GetCommandTrigger(TeleopControlFunctions::SPIN_UP_LONG);
+    return wpi::cmd::RobotModeTriggers::Teleop() && TeleopControl::GetInstance()->GetCommandTrigger(TeleopControlFunctions::LONG_LAUNCH);
 }
 wpi::cmd::Trigger VroomContainer::GetLongShotTrigger()
 {
@@ -191,8 +191,6 @@ wpi::cmd::Trigger VroomContainer::GetLongShotTrigger()
                              { return mech->Method; });
     or
      */
-    return wpi::cmd::RobotModeTriggers::Teleop() && TeleopControl::GetInstance()->GetCommandTrigger(TeleopControlFunctions::LONG_LAUNCH);
-
     return wpi::cmd::Trigger([]()
                              { return false; });
 }

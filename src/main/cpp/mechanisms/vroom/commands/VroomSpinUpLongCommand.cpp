@@ -17,7 +17,7 @@
 #include "mechanisms/vroom/commands/VroomSpinUpLongCommand.h"
 #include "mechanisms/vroom/Vroom.h"
 
-using namespace VroomsCommands;
+using namespace VroomCommands;
 
 static constexpr double m_feedinatorTarget{0.0};
 static constexpr double m_launchinatorTarget{12.0};
@@ -51,6 +51,4 @@ void VroomSpinUpLongCommand::Exit(bool interrupted)
 bool VroomSpinUpLongCommand::IsDone()
 {
     return m_timer.HasElapsed(1_s);
-
-    // Default continuous execution
 }
