@@ -190,27 +190,9 @@
                     ],
                     "control_data": [
                         {
-                            "name": "PercentOut",
-                            "ControlDevice": "CTRE",
-                            "ControlRequest": "DutyCycleOut",
-                            "Unit": "double",
-                            "p": 0.0,
-                            "i": 0.0,
-                            "d": 0.0,
-                            "f": 0.0,
-                            "velocity_gain": 0.0,
-                            "acceleration_gain": 0.0,
-                            "static_friction_gain": 0.0,
-                            "integral_zone": 0.0,
-                            "max_acceleration": 0.0,
-                            "cruise_velocity": 0.0,
-                            "GravityTypeValue": "Elevator_Static",
-                            "StaticFeedforwardSignValue": "UseVelocitySign"
-                        },
-                        {
-                            "name": "ControlData",
-                            "ControlDevice": "CTRE",
-                            "ControlRequest": "DutyCycleOut",
+                            "name": "VoltageOut",
+                            "ControlDevice": "REV",
+                            "ControlRequest": "kVoltage",
                             "Unit": "double",
                             "p": 0.0,
                             "i": 0.0,
@@ -234,14 +216,134 @@
                                     "HardwareName": "Feedinator",
                                     "Enabled": true,
                                     "TargetValue": 0.0,
-                                    "ControlData": "PercentOut",
+                                    "ControlData": "VoltageOut",
                                     "Unit": "double"
                                 },
                                 {
                                     "HardwareName": "Launchinator",
                                     "Enabled": true,
                                     "TargetValue": 0.0,
-                                    "ControlData": "PercentOut",
+                                    "ControlData": "VoltageOut",
+                                    "Unit": "double"
+                                }
+                            ],
+                            "solenoid_targets": []
+                        },
+                        {
+                            "name": "Intake",
+                            "motor_targets": [
+                                {
+                                    "HardwareName": "Feedinator",
+                                    "Enabled": true,
+                                    "TargetValue": 0.0,
+                                    "ControlData": "VoltageOut",
+                                    "Unit": "double"
+                                },
+                                {
+                                    "HardwareName": "Launchinator",
+                                    "Enabled": true,
+                                    "TargetValue": 0.0,
+                                    "ControlData": "VoltageOut",
+                                    "Unit": "double"
+                                }
+                            ],
+                            "solenoid_targets": []
+                        },
+                        {
+                            "name": "Expel",
+                            "motor_targets": [
+                                {
+                                    "HardwareName": "Feedinator",
+                                    "Enabled": true,
+                                    "TargetValue": 0.0,
+                                    "ControlData": "VoltageOut",
+                                    "Unit": "double"
+                                },
+                                {
+                                    "HardwareName": "Launchinator",
+                                    "Enabled": true,
+                                    "TargetValue": 0.0,
+                                    "ControlData": "VoltageOut",
+                                    "Unit": "double"
+                                }
+                            ],
+                            "solenoid_targets": []
+                        },
+                        {
+                            "name": "SpinUpShort",
+                            "motor_targets": [
+                                {
+                                    "HardwareName": "Feedinator",
+                                    "Enabled": true,
+                                    "TargetValue": 0.0,
+                                    "ControlData": "VoltageOut",
+                                    "Unit": "double"
+                                },
+                                {
+                                    "HardwareName": "Launchinator",
+                                    "Enabled": true,
+                                    "TargetValue": 0.0,
+                                    "ControlData": "VoltageOut",
+                                    "Unit": "double"
+                                }
+                            ],
+                            "solenoid_targets": []
+                        },
+                        {
+                            "name": "ShortShot",
+                            "motor_targets": [
+                                {
+                                    "HardwareName": "Feedinator",
+                                    "Enabled": true,
+                                    "TargetValue": 0.0,
+                                    "ControlData": "VoltageOut",
+                                    "Unit": "double"
+                                },
+                                {
+                                    "HardwareName": "Launchinator",
+                                    "Enabled": true,
+                                    "TargetValue": 0.0,
+                                    "ControlData": "VoltageOut",
+                                    "Unit": "double"
+                                }
+                            ],
+                            "solenoid_targets": []
+                        },
+                        {
+                            "name": "SpinUpLong",
+                            "motor_targets": [
+                                {
+                                    "HardwareName": "Feedinator",
+                                    "Enabled": true,
+                                    "TargetValue": 0.0,
+                                    "ControlData": "VoltageOut",
+                                    "Unit": "double"
+                                },
+                                {
+                                    "HardwareName": "Launchinator",
+                                    "Enabled": true,
+                                    "TargetValue": 0.0,
+                                    "ControlData": "VoltageOut",
+                                    "Unit": "double"
+                                }
+                            ],
+                            "solenoid_targets": []
+                        },
+                        {
+                            "name": "LongShot",
+                            "motor_targets": [
+                                {
+                                    "HardwareName": "Feedinator",
+                                    "Enabled": true,
+                                    "TargetValue": 0.0,
+                                    "ControlData": "VoltageOut",
+                                    "Unit": "double"
+                                },
+                                {
+                                    "HardwareName": "Launchinator",
+                                    "Enabled": true,
+                                    "TargetValue": 0.0,
+                                    "ControlData": "VoltageOut",
                                     "Unit": "double"
                                 }
                             ],
