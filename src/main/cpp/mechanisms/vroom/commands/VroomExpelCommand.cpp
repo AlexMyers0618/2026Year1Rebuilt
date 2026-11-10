@@ -1,4 +1,3 @@
-
 //====================================================================================================================================================
 // Copyright 2026 Lake Orion Robotics FIRST Team 302
 //
@@ -18,11 +17,10 @@
 #include "mechanisms/vroom/commands/VroomExpelCommand.h"
 #include "mechanisms/vroom/Vroom.h"
 
-
 using namespace VroomCommands;
 
-static constexpr double m_feedinatorTarget{ 0.0 };
-static constexpr double m_launchinatorTarget{ 0.0 };
+static constexpr double m_feedinatorTarget{-12.0};
+static constexpr double m_launchinatorTarget{-10.0};
 
 VroomExpelCommand::VroomExpelCommand(Vroom *mechanism) : wpi::cmd::CommandHelper<DragonTimedCommand, VroomExpelCommand>(mechanism), m_mechanism(mechanism)
 {
@@ -33,7 +31,7 @@ VroomExpelCommand::VroomExpelCommand(Vroom *mechanism) : wpi::cmd::CommandHelper
 void VroomExpelCommand::Init()
 {
     m_mechanism->SetCurrentState(Vroom::STATE_EXPEL);
-    
+
     // Motor targets for Expel
     m_mechanism->UpdateTargetFeedinatorVoltageOut(m_feedinatorTarget);
     m_mechanism->UpdateTargetLaunchinatorVoltageOut(m_launchinatorTarget);

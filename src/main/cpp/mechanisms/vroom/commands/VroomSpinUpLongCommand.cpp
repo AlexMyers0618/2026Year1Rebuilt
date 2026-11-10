@@ -1,4 +1,3 @@
-
 //====================================================================================================================================================
 // Copyright 2026 Lake Orion Robotics FIRST Team 302
 //
@@ -18,11 +17,10 @@
 #include "mechanisms/vroom/commands/VroomSpinUpLongCommand.h"
 #include "mechanisms/vroom/Vroom.h"
 
-
 using namespace VroomCommands;
 
-static constexpr double m_feedinatorTarget{ 0.0 };
-static constexpr double m_launchinatorTarget{ 0.0 };
+static constexpr double m_feedinatorTarget{0.0};
+static constexpr double m_launchinatorTarget{12.0};
 
 VroomSpinUpLongCommand::VroomSpinUpLongCommand(Vroom *mechanism) : wpi::cmd::CommandHelper<DragonTimedCommand, VroomSpinUpLongCommand>(mechanism), m_mechanism(mechanism)
 {
@@ -33,7 +31,7 @@ VroomSpinUpLongCommand::VroomSpinUpLongCommand(Vroom *mechanism) : wpi::cmd::Com
 void VroomSpinUpLongCommand::Init()
 {
     m_mechanism->SetCurrentState(Vroom::STATE_SPIN_UP_LONG);
-    
+
     // Motor targets for SpinUpLong
     m_mechanism->UpdateTargetFeedinatorVoltageOut(m_feedinatorTarget);
     m_mechanism->UpdateTargetLaunchinatorVoltageOut(m_launchinatorTarget);

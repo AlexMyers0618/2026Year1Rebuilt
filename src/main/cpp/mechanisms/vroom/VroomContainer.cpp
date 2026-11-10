@@ -1,4 +1,3 @@
-
 //====================================================================================================================================================
 // Copyright 2026 Lake Orion Robotics FIRST Team 302
 //
@@ -21,10 +20,10 @@
 #include "wpi/commands2/button/Trigger.hpp"
 
 // Team 302 Includes
-#include "mechanisms/vroom/Vroom.h"
 #include "mechanisms/MechanismTypes.h"
 #include "mechanisms/configs/MechanismConfig.h"
 #include "mechanisms/configs/MechanismConfigMgr.h"
+#include "mechanisms/vroom/Vroom.h"
 #include "teleopcontrol/TeleopControl.h"
 #include "teleopcontrol/TeleopControlFunctions.h"
 #include "utils/logging/debug/Logger.h"
@@ -57,7 +56,7 @@ void VroomContainer::ConfigureBindings()
     {
         // Vroom not present on this robot (commented out in the per-robot config) - nothing to bind.
         return;
-    } 
+    }
 
     auto controller = TeleopControl::GetInstance();
     if (controller == nullptr)
@@ -85,7 +84,7 @@ void VroomContainer::ConfigureBindings()
     // requires the subsystem.
     //==============================================================================================
 
-    //Default Command
+    // Default Command
     m_vroom->SetDefaultCommand(m_vroom->GetOffCommand());
 
     Logger::GetLogger()->LogData(LOGGER_LEVEL::PRINT, std::string("VroomContainer"), std::string("Configured"), std::string("Vroom"));
@@ -96,7 +95,7 @@ void VroomContainer::ConfigureBindings()
 //==================================================================================================
 wpi::cmd::Trigger VroomContainer::GetOffTrigger()
 {
-    //Create trigger for  Off Command
+    // Create trigger for  Off Command
     /*
     Exmample:
     Mech *mech = m_mech;
@@ -106,12 +105,12 @@ wpi::cmd::Trigger VroomContainer::GetOffTrigger()
     return wpi::cmd::RobotModeTriggers::Teleop() && TeleopControl::GetInstance()->GetCommandTrigger(TeleopControlFunctions::Function);
     */
 
-     return wpi::cmd::Trigger([]()
+    return wpi::cmd::Trigger([]()
                              { return false; });
 }
 wpi::cmd::Trigger VroomContainer::GetIntakeTrigger()
 {
-    //Create trigger for  Intake Command
+    // Create trigger for  Intake Command
     /*
     Exmample:
     Mech *mech = m_mech;
@@ -121,12 +120,12 @@ wpi::cmd::Trigger VroomContainer::GetIntakeTrigger()
     return wpi::cmd::RobotModeTriggers::Teleop() && TeleopControl::GetInstance()->GetCommandTrigger(TeleopControlFunctions::Function);
     */
 
-     return wpi::cmd::Trigger([]()
+    return wpi::cmd::Trigger([]()
                              { return false; });
 }
 wpi::cmd::Trigger VroomContainer::GetExpelTrigger()
 {
-    //Create trigger for  Expel Command
+    // Create trigger for  Expel Command
     /*
     Exmample:
     Mech *mech = m_mech;
@@ -136,12 +135,12 @@ wpi::cmd::Trigger VroomContainer::GetExpelTrigger()
     return wpi::cmd::RobotModeTriggers::Teleop() && TeleopControl::GetInstance()->GetCommandTrigger(TeleopControlFunctions::Function);
     */
 
-     return wpi::cmd::Trigger([]()
+    return wpi::cmd::Trigger([]()
                              { return false; });
 }
 wpi::cmd::Trigger VroomContainer::GetSpinUpShortTrigger()
 {
-    //Create trigger for  SpinUpShort Command
+    // Create trigger for  SpinUpShort Command
     /*
     Exmample:
     Mech *mech = m_mech;
@@ -151,12 +150,12 @@ wpi::cmd::Trigger VroomContainer::GetSpinUpShortTrigger()
     return wpi::cmd::RobotModeTriggers::Teleop() && TeleopControl::GetInstance()->GetCommandTrigger(TeleopControlFunctions::Function);
     */
 
-     return wpi::cmd::Trigger([]()
+    return wpi::cmd::Trigger([]()
                              { return false; });
 }
 wpi::cmd::Trigger VroomContainer::GetShortShotTrigger()
 {
-    //Create trigger for  ShortShot Command
+    // Create trigger for  ShortShot Command
     /*
     Exmample:
     Mech *mech = m_mech;
@@ -166,12 +165,12 @@ wpi::cmd::Trigger VroomContainer::GetShortShotTrigger()
     return wpi::cmd::RobotModeTriggers::Teleop() && TeleopControl::GetInstance()->GetCommandTrigger(TeleopControlFunctions::Function);
     */
 
-     return wpi::cmd::Trigger([]()
+    return wpi::cmd::Trigger([]()
                              { return false; });
 }
 wpi::cmd::Trigger VroomContainer::GetSpinUpLongTrigger()
 {
-    //Create trigger for  SpinUpLong Command
+    // Create trigger for  SpinUpLong Command
     /*
     Exmample:
     Mech *mech = m_mech;
@@ -181,12 +180,12 @@ wpi::cmd::Trigger VroomContainer::GetSpinUpLongTrigger()
     return wpi::cmd::RobotModeTriggers::Teleop() && TeleopControl::GetInstance()->GetCommandTrigger(TeleopControlFunctions::Function);
     */
 
-     return wpi::cmd::Trigger([]()
+    return wpi::cmd::Trigger([]()
                              { return false; });
 }
 wpi::cmd::Trigger VroomContainer::GetLongShotTrigger()
 {
-    //Create trigger for  LongShot Command
+    // Create trigger for  LongShot Command
     /*
     Exmample:
     Mech *mech = m_mech;
@@ -196,6 +195,6 @@ wpi::cmd::Trigger VroomContainer::GetLongShotTrigger()
     return wpi::cmd::RobotModeTriggers::Teleop() && TeleopControl::GetInstance()->GetCommandTrigger(TeleopControlFunctions::Function);
     */
 
-     return wpi::cmd::Trigger([]()
+    return wpi::cmd::Trigger([]()
                              { return false; });
 }
