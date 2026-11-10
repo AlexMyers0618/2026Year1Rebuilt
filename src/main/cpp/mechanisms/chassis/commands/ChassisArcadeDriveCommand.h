@@ -17,6 +17,7 @@
 #pragma once
 
 #include "mechanisms/base/DragonTimedCommand.h"
+#include "wpi/drive/DifferentialDrive.hpp"
 
 class Chassis;
 
@@ -36,5 +37,7 @@ namespace ChassisCommands
 
     private:
         Chassis *m_mechanism;
+
+        wpi::DifferentialDrive m_arcadeDrive{*m_mechanism->GetLeftLeaderSparkMax(), *m_mechanism->GetRightLeaderSparkMax()};
     };
 }

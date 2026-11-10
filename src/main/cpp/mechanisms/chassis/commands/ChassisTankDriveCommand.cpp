@@ -16,6 +16,7 @@
 
 #include "mechanisms/chassis/commands/ChassisTankDriveCommand.h"
 #include "mechanisms/chassis/Chassis.h"
+#include "teleopcontrol/TeleopControl.h"
 
 using namespace ChassisCommands;
 
@@ -34,6 +35,7 @@ void ChassisTankDriveCommand::Init()
 
 void ChassisTankDriveCommand::Run()
 {
+    m_tankDrive.TankDrive(TeleopControl::GetInstance()->GetAxisValue(TeleopControlFunctions::TANK_DRIVE_LEFT), TeleopControl::GetInstance()->GetAxisValue(TeleopControlFunctions::TANK_DRIVE_RIGHT));
 }
 
 void ChassisTankDriveCommand::Exit(bool interrupted)
