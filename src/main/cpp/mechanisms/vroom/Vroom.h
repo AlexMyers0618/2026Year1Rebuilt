@@ -1,4 +1,3 @@
-
 //====================================================================================================================================================
 // Copyright 2026 Lake Orion Robotics FIRST Team 302
 //
@@ -22,6 +21,7 @@
 // FRC Includes
 #include "wpi/nt/NetworkTable.hpp"
 
+#include "RobotIdentifier.h"
 #include "mechanisms/base/BaseMech.h"
 #include "mechanisms/base/BaseMechSubsystem.h"
 #include "mechanisms/configs/MechanismConfigMgr.h"
@@ -31,7 +31,6 @@
 #include "state/RobotStateChanges.h"
 #include "utils/logging/signals/DragonDataLogger.h"
 #include "utils/logging/timing/DragonTimedClass.h"
-#include "RobotIdentifier.h"
 
 // Hardware Includes
 #include "ctre/phoenix6/configs/Configuration.hpp"
@@ -39,146 +38,146 @@
 #include "rev/config/SparkMaxConfig.h"
 
 // Vroom command classes
-#include "mechanisms/vroom/commands/VroomOffCommand.h"
-#include "mechanisms/vroom/commands/VroomIntakeCommand.h"
 #include "mechanisms/vroom/commands/VroomExpelCommand.h"
-#include "mechanisms/vroom/commands/VroomSpinUpShortCommand.h"
+#include "mechanisms/vroom/commands/VroomIntakeCommand.h"
+#include "mechanisms/vroom/commands/VroomLongShotCommand.h"
+#include "mechanisms/vroom/commands/VroomOffCommand.h"
 #include "mechanisms/vroom/commands/VroomShortShotCommand.h"
 #include "mechanisms/vroom/commands/VroomSpinUpLongCommand.h"
-#include "mechanisms/vroom/commands/VroomLongShotCommand.h"
+#include "mechanisms/vroom/commands/VroomSpinUpShortCommand.h"
 
 class Vroom : public BaseMechSubsystem, public IRobotStateChangeSubscriber, public DragonDataLogger, public DragonTimedClass
 {
 public:
-    enum STATE_NAMES
+  enum STATE_NAMES
+  {
+    STATE_OFF,
+    STATE_INTAKE,
+    STATE_EXPEL,
+    STATE_SPIN_UP_SHORT,
+    STATE_SHORT_SHOT,
+    STATE_SPIN_UP_LONG,
+    STATE_LONG_SHOT,
+  };
+
+  Vroom(RobotIdentifier id);
+  Vroom() = delete;
+  ~Vroom() = default;
+
+  // Creation Methods per Robot
+  void CreateYearOneRobot2026();
+  void InitializeYearOneRobot2026();
+
+  static std::map<std::string, STATE_NAMES> stringToSTATE_NAMESEnumMap;
+  static std::map<STATE_NAMES, std::string> STATE_NAMESEnumToStringMap;
+
+  RobotIdentifier getActiveRobotId() { return m_activeRobotId; }
+
+  void Periodic() override;
+  void DataLog(uint64_t timestamp) override;
+
+  // Command Getters
+  wpi::cmd::CommandPtr GetOffCommand() { return VroomCommands::VroomOffCommand(this).ToPtr(); }
+  wpi::cmd::CommandPtr GetIntakeCommand() { return VroomCommands::VroomIntakeCommand(this).ToPtr(); }
+  wpi::cmd::CommandPtr GetExpelCommand() { return VroomCommands::VroomExpelCommand(this).ToPtr(); }
+  wpi::cmd::CommandPtr GetSpinUpShortCommand() { return VroomCommands::VroomSpinUpShortCommand(this).ToPtr(); }
+  wpi::cmd::CommandPtr GetShortShotCommand() { return VroomCommands::VroomShortShotCommand(this).ToPtr(); }
+  wpi::cmd::CommandPtr GetSpinUpLongCommand() { return VroomCommands::VroomSpinUpLongCommand(this).ToPtr(); }
+  wpi::cmd::CommandPtr GetLongShotCommand() { return VroomCommands::VroomLongShotCommand(this).ToPtr(); }
+
+  /// @brief Map a STATE_NAMES value to the matching command (used by the autonomous bridge).
+  wpi::cmd::CommandPtr GetCommandForState(STATE_NAMES state)
+  {
+    switch (state)
     {
-        STATE_OFF,
-        STATE_INTAKE,
-        STATE_EXPEL,
-        STATE_SPIN_UP_SHORT,
-        STATE_SHORT_SHOT,
-        STATE_SPIN_UP_LONG,
-        STATE_LONG_SHOT,
-    };
-
-    Vroom(RobotIdentifier id);
-    Vroom() = delete;
-    ~Vroom() = default;
-
-    // Creation Methods per Robot
-    void CreateYearOneRobot2026();
-    void InitializeYearOneRobot2026();
-
-    static std::map<std::string, STATE_NAMES> stringToSTATE_NAMESEnumMap;
-    static std::map<STATE_NAMES, std::string> STATE_NAMESEnumToStringMap;
-    
-    RobotIdentifier getActiveRobotId() { return m_activeRobotId; }
-
-    void Periodic() override;
-    void DataLog(uint64_t timestamp) override;
-
-    // Command Getters
-        wpi::cmd::CommandPtr GetOffCommand() { return VroomCommands::VroomOffCommand(this).ToPtr(); }
-        wpi::cmd::CommandPtr GetIntakeCommand() { return VroomCommands::VroomIntakeCommand(this).ToPtr(); }
-        wpi::cmd::CommandPtr GetExpelCommand() { return VroomCommands::VroomExpelCommand(this).ToPtr(); }
-        wpi::cmd::CommandPtr GetSpinUpShortCommand() { return VroomCommands::VroomSpinUpShortCommand(this).ToPtr(); }
-        wpi::cmd::CommandPtr GetShortShotCommand() { return VroomCommands::VroomShortShotCommand(this).ToPtr(); }
-        wpi::cmd::CommandPtr GetSpinUpLongCommand() { return VroomCommands::VroomSpinUpLongCommand(this).ToPtr(); }
-        wpi::cmd::CommandPtr GetLongShotCommand() { return VroomCommands::VroomLongShotCommand(this).ToPtr(); }
-
-    /// @brief Map a STATE_NAMES value to the matching command (used by the autonomous bridge).
-    wpi::cmd::CommandPtr GetCommandForState(STATE_NAMES state)
-    {
-      switch (state)
-      {
-        case STATE_INTAKE:
-            return GetIntakeCommand();
-        case STATE_EXPEL:
-            return GetExpelCommand();
-        case STATE_SPIN_UP_SHORT:
-            return GetSpinUpShortCommand();
-        case STATE_SHORT_SHOT:
-            return GetShortShotCommand();
-        case STATE_SPIN_UP_LONG:
-            return GetSpinUpLongCommand();
-        case STATE_LONG_SHOT:
-            return GetLongShotCommand();
-        case STATE_OFF:
-        default:
-            return GetOffCommand();
-      }
+    case STATE_INTAKE:
+      return GetIntakeCommand();
+    case STATE_EXPEL:
+      return GetExpelCommand();
+    case STATE_SPIN_UP_SHORT:
+      return GetSpinUpShortCommand();
+    case STATE_SHORT_SHOT:
+      return GetShortShotCommand();
+    case STATE_SPIN_UP_LONG:
+      return GetSpinUpLongCommand();
+    case STATE_LONG_SHOT:
+      return GetLongShotCommand();
+    case STATE_OFF:
+    default:
+      return GetOffCommand();
     }
+  }
 
-    // Update Target Methods
-    void UpdateTargetFeedinatorVoltageOut(double setpoint)
-    {
-      m_feedinatorVoltageOut = setpoint;
-      m_feedinatorActiveTarget = &m_feedinatorVoltageOut;
-    }
-    void UpdateTargetLaunchinatorVoltageOut(double setpoint)
-    {
-      m_launchinatorVoltageOut = setpoint;
-      m_launchinatorActiveTarget = &m_launchinatorVoltageOut;
-    }
+  // Update Target Methods
+  void UpdateTargetFeedinatorVoltageOut(double setpoint)
+  {
+    m_feedinatorVoltageOut = setpoint;
+    m_feedinatorActiveTarget = &m_feedinatorVoltageOut;
+  }
+  void UpdateTargetLaunchinatorVoltageOut(double setpoint)
+  {
+    m_launchinatorVoltageOut = setpoint;
+    m_launchinatorActiveTarget = &m_launchinatorVoltageOut;
+  }
 
-    // Hardware Getters
-    rev::spark::SparkMax *GetFeedinatorSparkMax() const { return m_feedinatorMotor; }
-    rev::spark::SparkMax *GetLaunchinatorSparkMax() const { return m_launchinatorMotor; }
+  // Hardware Getters
+  rev::spark::SparkMax *GetFeedinatorSparkMax() const { return m_feedinatorMotor; }
+  rev::spark::SparkMax *GetLaunchinatorSparkMax() const { return m_launchinatorMotor; }
 
-    // ControlData Getters
-            ControlData *GetVoltageOutControlData() const { return  m_voltageOut; }
+  // ControlData Getters
+  ControlData *GetVoltageOutControlData() const { return m_voltageOut; }
 
   /// @brief Autonomous bridge: schedule the command matching the requested state.
-	/// @details Keeps the same signature the old StateMgr exposed so CyclePrimitives and
-	///          the auton XML pipeline continue to work unchanged.
-	void SetCurrentState(int state, bool run);
+  /// @details Keeps the same signature the old StateMgr exposed so CyclePrimitives and
+  ///          the auton XML pipeline continue to work unchanged.
+  void SetCurrentState(int state, bool run);
 
-	/// @brief Set the active mode tracker. Used by the Intake command classes in their Initialize().
-	void SetCurrentState(int mode) { m_currentState = mode; }
+  /// @brief Set the active mode tracker. Used by the Intake command classes in their Initialize().
+  void SetCurrentState(int mode) { m_currentState = mode; }
 
-	std::string GetCurrentStateName()
-	{
-		STATE_NAMES state = static_cast<STATE_NAMES>(GetCurrentState());
-		return (STATE_NAMESEnumToStringMap.find(state) == STATE_NAMESEnumToStringMap.end()) ? "Unknown State" : STATE_NAMESEnumToStringMap.at(state);
-	}
-  
+  std::string GetCurrentStateName()
+  {
+    STATE_NAMES state = static_cast<STATE_NAMES>(GetCurrentState());
+    return (STATE_NAMESEnumToStringMap.find(state) == STATE_NAMESEnumToStringMap.end()) ? "Unknown State" : STATE_NAMESEnumToStringMap.at(state);
+  }
+
   int GetCurrentState() const { return m_currentState; }
 
   // --- Handwritten Public Members ---
 
 protected:
-	RobotIdentifier m_activeRobotId;
-	std::string m_ntName;
-	ControlData *GetControlData(std::string name) override;
+  RobotIdentifier m_activeRobotId;
+  std::string m_ntName;
+  ControlData *GetControlData(std::string name) override;
 
   // --- Handwritten Protected Members ---
 
 private:
- /// @brief update the output to the mechanism using the current controller and target value(s)
-	  virtual void Update();
+  /// @brief update the output to the mechanism using the current controller and target value(s)
+  virtual void Update();
 
   std::unordered_map<std::string, STATE_NAMES> m_stateMap;
 
-	// Command-based mode tracking + autonomous command handle (replaces StateMgr internals)
+  // Command-based mode tracking + autonomous command handle (replaces StateMgr internals)
   int m_currentState = STATE_OFF;
-	wpi::cmd::CommandPtr m_autonCommand;
+  wpi::cmd::CommandPtr m_autonCommand;
 
   // Hardware Initializtion Methods
   void InitializeSparkMaxFeedinatorYearOneRobot2026();
   void InitializeSparkMaxLaunchinatorYearOneRobot2026();
 
   // Hardware Declarations
-          rev::spark::SparkMax* m_feedinatorMotor = nullptr;
-          rev::spark::SparkMax* m_launchinatorMotor = nullptr;
+  rev::spark::SparkMax *m_feedinatorMotor = nullptr;
+  rev::spark::SparkMax *m_launchinatorMotor = nullptr;
 
   // Control Data Declarations
-          ControlData* m_voltageOut = nullptr;
+  ControlData *m_voltageOut = nullptr;
 
   // Control requested
-    double m_feedinatorVoltageOut{0.0};
-    double m_launchinatorVoltageOut{0.0};
-    double *m_feedinatorActiveTarget = &m_feedinatorVoltageOut;
-    double *m_launchinatorActiveTarget = &m_launchinatorVoltageOut;
+  double m_feedinatorVoltageOut{0.0};
+  double m_launchinatorVoltageOut{0.0};
+  double *m_feedinatorActiveTarget = &m_feedinatorVoltageOut;
+  double *m_launchinatorActiveTarget = &m_launchinatorVoltageOut;
 
   // Cached Sensor Values
 
@@ -192,5 +191,4 @@ private:
   static constexpr std::string_view m_loggingLaunchinatorControlRequest = "/Vroom/LaunchinatorControlRequest";
 
   // --- Handwritten Private Members ---
-
 };

@@ -1,4 +1,3 @@
-
 //====================================================================================================================================================
 // Copyright 2026 Lake Orion Robotics FIRST Team 302
 //
@@ -23,7 +22,7 @@ class Chassis;
 
 namespace ChassisCommands
 {
-    class ChassisTankDriveCommand :  public wpi::cmd::CommandHelper<DragonTimedCommand, ChassisTankDriveCommand>
+    class ChassisTankDriveCommand : public wpi::cmd::CommandHelper<DragonTimedCommand, ChassisTankDriveCommand>
     {
     public:
         ChassisTankDriveCommand() = delete;

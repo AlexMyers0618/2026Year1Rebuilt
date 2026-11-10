@@ -1,4 +1,3 @@
-
 //====================================================================================================================================================
 // Copyright 2026 Lake Orion Robotics FIRST Team 302
 //
@@ -18,9 +17,7 @@
 #include "mechanisms/chassis/commands/ChassisTankDriveCommand.h"
 #include "mechanisms/chassis/Chassis.h"
 
-
 using namespace ChassisCommands;
-
 
 ChassisTankDriveCommand::ChassisTankDriveCommand(Chassis *mechanism) : wpi::cmd::CommandHelper<DragonTimedCommand, ChassisTankDriveCommand>(mechanism), m_mechanism(mechanism)
 {
@@ -31,7 +28,7 @@ ChassisTankDriveCommand::ChassisTankDriveCommand(Chassis *mechanism) : wpi::cmd:
 void ChassisTankDriveCommand::Init()
 {
     m_mechanism->SetCurrentState(Chassis::STATE_TANK_DRIVE);
-    
+
     // Motor targets for TankDrive
 }
 

@@ -1,4 +1,3 @@
-
 //====================================================================================================================================================
 // Copyright 2026 Lake Orion Robotics FIRST Team 302
 //
@@ -18,11 +17,10 @@
 #include "mechanisms/vroom/commands/VroomIntakeCommand.h"
 #include "mechanisms/vroom/Vroom.h"
 
-
 using namespace VroomCommands;
 
-static constexpr double m_feedinatorTarget{ 0.0 };
-static constexpr double m_launchinatorTarget{ 0.0 };
+static constexpr double m_feedinatorTarget{12.0};
+static constexpr double m_launchinatorTarget{0.0};
 
 VroomIntakeCommand::VroomIntakeCommand(Vroom *mechanism) : wpi::cmd::CommandHelper<DragonTimedCommand, VroomIntakeCommand>(mechanism), m_mechanism(mechanism)
 {
@@ -33,7 +31,7 @@ VroomIntakeCommand::VroomIntakeCommand(Vroom *mechanism) : wpi::cmd::CommandHelp
 void VroomIntakeCommand::Init()
 {
     m_mechanism->SetCurrentState(Vroom::STATE_INTAKE);
-    
+
     // Motor targets for Intake
     m_mechanism->UpdateTargetFeedinatorVoltageOut(m_feedinatorTarget);
     m_mechanism->UpdateTargetLaunchinatorVoltageOut(m_launchinatorTarget);
