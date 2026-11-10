@@ -41,6 +41,8 @@ public:
         SYSID_DYNAMICFORWARD,
         SYSID_DYNAMICREVERSE,
         TIPCORRECTION_TOGGLE,
+        SPIN_UP_LONG,
+        LONG_LAUNCH,
 
         // Season Specific Drive Commands
 
