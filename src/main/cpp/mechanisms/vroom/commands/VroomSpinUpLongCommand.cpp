@@ -17,12 +17,12 @@
 
 #include "mechanisms/vroom/commands/VroomSpinUpLongCommand.h"
 #include "mechanisms/vroom/Vroom.h"
-
+#include "mechanisms/vroom/VroomContainer.h"
 
 using namespace VroomCommands;
 
-static constexpr double m_feedinatorTarget{ 0.0 };
-static constexpr double m_launchinatorTarget{ 0.0 };
+static constexpr double m_feedinatorTarget{0.0};
+static constexpr double m_launchinatorTarget{0.0};
 
 VroomSpinUpLongCommand::VroomSpinUpLongCommand(Vroom *mechanism) : wpi::cmd::CommandHelper<DragonTimedCommand, VroomSpinUpLongCommand>(mechanism), m_mechanism(mechanism)
 {
@@ -33,10 +33,12 @@ VroomSpinUpLongCommand::VroomSpinUpLongCommand(Vroom *mechanism) : wpi::cmd::Com
 void VroomSpinUpLongCommand::Init()
 {
     m_mechanism->SetCurrentState(Vroom::STATE_SPIN_UP_LONG);
-    
+
     // Motor targets for SpinUpLong
     m_mechanism->UpdateTargetFeedinatorVoltageOut(m_feedinatorTarget);
     m_mechanism->UpdateTargetLaunchinatorVoltageOut(m_launchinatorTarget);
+    m_timer.Reset();
+    m_timer.Start();
 }
 
 void VroomSpinUpLongCommand::Run()
@@ -45,9 +47,12 @@ void VroomSpinUpLongCommand::Run()
 
 void VroomSpinUpLongCommand::Exit(bool interrupted)
 {
+    m_timer.Stop();
 }
 
 bool VroomSpinUpLongCommand::IsDone()
 {
-    return false; // Default continuous execution
+    return m_timer.HasElapsed(1_s);
+
+    // Default continuous execution
 }

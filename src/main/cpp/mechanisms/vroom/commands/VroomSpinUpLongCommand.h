@@ -37,5 +37,6 @@ namespace VroomCommands
 
     private:
         Vroom *m_mechanism;
+        wpi::Timer m_timer;
     };
 }

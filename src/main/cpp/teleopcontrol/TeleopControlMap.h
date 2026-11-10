@@ -164,7 +164,7 @@ inline const robin_hood::unordered_map<TeleopControlFunctions::FUNCTION, const T
 
     // Co-Pilot Controls
 
-    {TeleopControlFunctions::SPIN_UP_LONG, copilotYButton},
+    {TeleopControlFunctions::LONG_LAUNCH, copilotYButton},
 
 };
 
