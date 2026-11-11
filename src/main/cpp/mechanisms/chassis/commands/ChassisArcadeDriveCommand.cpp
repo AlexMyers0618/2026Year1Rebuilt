@@ -16,6 +16,7 @@
 
 #include "mechanisms/chassis/commands/ChassisArcadeDriveCommand.h"
 #include "mechanisms/chassis/Chassis.h"
+#include "teleopcontrol/TeleopControl.h"
 
 using namespace ChassisCommands;
 
@@ -34,6 +35,7 @@ void ChassisArcadeDriveCommand::Init()
 
 void ChassisArcadeDriveCommand::Run()
 {
+    m_mechanism->GetDifferentialDrive().ArcadeDrive(TeleopControl::GetInstance()->GetAxisValue(TeleopControlFunctions::HOLONOMIC_DRIVE_FORWARD), TeleopControl::GetInstance()->GetAxisValue(TeleopControlFunctions::HOLONOMIC_DRIVE_ROTATE));
 }
 
 void ChassisArcadeDriveCommand::Exit(bool interrupted)

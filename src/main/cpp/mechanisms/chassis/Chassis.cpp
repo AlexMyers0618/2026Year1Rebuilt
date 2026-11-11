@@ -86,6 +86,7 @@ void Chassis::InitializeYearOneRobot2026()
     InitializeSparkMaxLeftFollowerYearOneRobot2026();
     InitializeSparkMaxRightLeaderYearOneRobot2026();
     InitializeSparkMaxRightFollowerYearOneRobot2026();
+    m_differentialDrive = std::make_unique<wpi::DifferentialDrive>(*m_leftLeaderMotor, *m_rightLeaderMotor);
 }
 
 // All of the Initializtion Mehtods for all of the robots

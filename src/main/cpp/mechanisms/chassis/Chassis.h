@@ -16,6 +16,7 @@
 
 #pragma once
 
+#include <memory>
 #include <string>
 
 // FRC Includes
@@ -40,6 +41,8 @@
 // Chassis command classes
 #include "mechanisms/chassis/commands/ChassisArcadeDriveCommand.h"
 #include "mechanisms/chassis/commands/ChassisTankDriveCommand.h"
+
+#include "wpi/drive/DifferentialDrive.hpp"
 
 class Chassis : public BaseMechSubsystem, public IRobotStateChangeSubscriber, public DragonDataLogger, public DragonTimedClass
 {
@@ -121,6 +124,10 @@ public:
   int GetCurrentState() const { return m_currentState; }
 
   // --- Handwritten Public Members ---
+  wpi::DifferentialDrive &GetDifferentialDrive()
+  {
+    return *m_differentialDrive;
+  }
 
 protected:
   RobotIdentifier m_activeRobotId;
@@ -172,4 +179,5 @@ private:
   static constexpr std::string_view m_loggingRightLeaderControlRequest = "/Chassis/RightLeaderControlRequest";
 
   // --- Handwritten Private Members ---
+  std::unique_ptr<wpi::DifferentialDrive> m_differentialDrive;
 };
