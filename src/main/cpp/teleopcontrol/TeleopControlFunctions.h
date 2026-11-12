@@ -24,32 +24,33 @@
 class TeleopControlFunctions
 {
 public:
-    enum FUNCTION
-    {
-        // General Drive Commands
-        ROBOT_ORIENTED_DRIVE,
-        HOLONOMIC_DRIVE_FORWARD,
-        HOLONOMIC_DRIVE_ROTATE,
-        HOLONOMIC_DRIVE_STRAFE,
-        AUTO_TURN_FORWARD,
-        AUTO_TURN_BACKWARD,
-        RESET_POSITION,
-        SLOW_MODE,
-        SYSID_MODIFER,
-        SYSID_QUASISTATICFORWARD,
-        SYSID_QUASISTATICREVERSE,
-        SYSID_DYNAMICFORWARD,
-        SYSID_DYNAMICREVERSE,
-        TIPCORRECTION_TOGGLE,
-        TANK_DRIVE_RIGHT,
-        TANK_DRIVE_LEFT,
+        enum FUNCTION
+        {
+                // General Drive Commands
+                ROBOT_ORIENTED_DRIVE,
+                HOLONOMIC_DRIVE_FORWARD,
+                HOLONOMIC_DRIVE_ROTATE,
+                HOLONOMIC_DRIVE_STRAFE,
+                AUTO_TURN_FORWARD,
+                AUTO_TURN_BACKWARD,
+                RESET_POSITION,
+                SLOW_MODE,
+                SYSID_MODIFER,
+                SYSID_QUASISTATICFORWARD,
+                SYSID_QUASISTATICREVERSE,
+                SYSID_DYNAMICFORWARD,
+                SYSID_DYNAMICREVERSE,
+                TIPCORRECTION_TOGGLE,
+                TANK_DRIVE_RIGHT,
+                TANK_DRIVE_LEFT,
 
-        // Season Specific Drive Commands
+                // Season Specific Drive Commands
 
-        // Mechanisms specific
-        // Intake
-        INTAKE,
-        EXPEL,
-
-    };
+                // Mechanisms specific
+                // Intake
+                INTAKE,
+                EXPEL,
+                SPIN_UP_LONG,
+                LONG_LAUNCH,
+        };
 };
