@@ -41,6 +41,8 @@ public:
         SYSID_DYNAMICFORWARD,
         SYSID_DYNAMICREVERSE,
         TIPCORRECTION_TOGGLE,
+        TANK_DRIVE_RIGHT,
+        TANK_DRIVE_LEFT,
 
         // Season Specific Drive Commands
 

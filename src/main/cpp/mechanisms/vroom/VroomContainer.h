@@ -1,4 +1,3 @@
-
 //====================================================================================================================================================
 // Copyright 2026 Lake Orion Robotics FIRST Team 302
 //
@@ -81,7 +80,6 @@ private:
     wpi::cmd::Trigger GetShortShotTrigger();
     wpi::cmd::Trigger GetSpinUpLongTrigger();
     wpi::cmd::Trigger GetLongShotTrigger();
-
 
     static VroomContainer *m_instance;
 

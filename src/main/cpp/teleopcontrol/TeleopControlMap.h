@@ -214,6 +214,8 @@ inline robin_hood::unordered_map<TeleopControlFunctions::FUNCTION, const TeleopC
 
     // Driver Controls
     {TeleopControlFunctions::HOLONOMIC_DRIVE_FORWARD, driverLJoystickY},
+    {TeleopControlFunctions::TANK_DRIVE_LEFT, driverLJoystickX},
+    {TeleopControlFunctions::TANK_DRIVE_RIGHT, driverRJoystickX},
     {TeleopControlFunctions::HOLONOMIC_DRIVE_STRAFE, driverLJoystickX},
     {TeleopControlFunctions::HOLONOMIC_DRIVE_ROTATE, driverRJoystickX},
 

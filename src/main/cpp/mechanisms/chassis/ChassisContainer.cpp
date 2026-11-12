@@ -1,4 +1,3 @@
-
 //====================================================================================================================================================
 // Copyright 2026 Lake Orion Robotics FIRST Team 302
 //
@@ -21,8 +20,8 @@
 #include "wpi/commands2/button/Trigger.hpp"
 
 // Team 302 Includes
-#include "mechanisms/chassis/Chassis.h"
 #include "mechanisms/MechanismTypes.h"
+#include "mechanisms/chassis/Chassis.h"
 #include "mechanisms/configs/MechanismConfig.h"
 #include "mechanisms/configs/MechanismConfigMgr.h"
 #include "teleopcontrol/TeleopControl.h"
@@ -57,7 +56,7 @@ void ChassisContainer::ConfigureBindings()
     {
         // Chassis not present on this robot (commented out in the per-robot config) - nothing to bind.
         return;
-    } 
+    }
 
     auto controller = TeleopControl::GetInstance();
     if (controller == nullptr)
@@ -85,7 +84,7 @@ void ChassisContainer::ConfigureBindings()
     // requires the subsystem.
     //==============================================================================================
 
-    //Default Command
+    // Default Command
     m_chassis->SetDefaultCommand(m_chassis->GetArcadeDriveCommand());
 
     Logger::GetLogger()->LogData(LOGGER_LEVEL::PRINT, std::string("ChassisContainer"), std::string("Configured"), std::string("Chassis"));
@@ -96,7 +95,7 @@ void ChassisContainer::ConfigureBindings()
 //==================================================================================================
 wpi::cmd::Trigger ChassisContainer::GetArcadeDriveTrigger()
 {
-    //Create trigger for  ArcadeDrive Command
+    // Create trigger for  ArcadeDrive Command
     /*
     Exmample:
     Mech *mech = m_mech;
@@ -106,12 +105,12 @@ wpi::cmd::Trigger ChassisContainer::GetArcadeDriveTrigger()
     return wpi::cmd::RobotModeTriggers::Teleop() && TeleopControl::GetInstance()->GetCommandTrigger(TeleopControlFunctions::Function);
     */
 
-     return wpi::cmd::Trigger([]()
+    return wpi::cmd::Trigger([]()
                              { return false; });
 }
 wpi::cmd::Trigger ChassisContainer::GetTankDriveTrigger()
 {
-    //Create trigger for  TankDrive Command
+    // Create trigger for  TankDrive Command
     /*
     Exmample:
     Mech *mech = m_mech;
@@ -121,6 +120,6 @@ wpi::cmd::Trigger ChassisContainer::GetTankDriveTrigger()
     return wpi::cmd::RobotModeTriggers::Teleop() && TeleopControl::GetInstance()->GetCommandTrigger(TeleopControlFunctions::Function);
     */
 
-     return wpi::cmd::Trigger([]()
+    return wpi::cmd::Trigger([]()
                              { return false; });
 }

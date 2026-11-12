@@ -1,4 +1,3 @@
-
 //====================================================================================================================================================
 // Copyright 2026 Lake Orion Robotics FIRST Team 302
 //
@@ -18,11 +17,10 @@
 #include "mechanisms/vroom/commands/VroomOffCommand.h"
 #include "mechanisms/vroom/Vroom.h"
 
-
 using namespace VroomCommands;
 
-static constexpr double m_feedinatorTarget{ 0.0 };
-static constexpr double m_launchinatorTarget{ 0.0 };
+static constexpr double m_feedinatorTarget{0.0};
+static constexpr double m_launchinatorTarget{0.0};
 
 VroomOffCommand::VroomOffCommand(Vroom *mechanism) : wpi::cmd::CommandHelper<DragonTimedCommand, VroomOffCommand>(mechanism), m_mechanism(mechanism)
 {
@@ -33,7 +31,7 @@ VroomOffCommand::VroomOffCommand(Vroom *mechanism) : wpi::cmd::CommandHelper<Dra
 void VroomOffCommand::Init()
 {
     m_mechanism->SetCurrentState(Vroom::STATE_OFF);
-    
+
     // Motor targets for Off
     m_mechanism->UpdateTargetFeedinatorVoltageOut(m_feedinatorTarget);
     m_mechanism->UpdateTargetLaunchinatorVoltageOut(m_launchinatorTarget);

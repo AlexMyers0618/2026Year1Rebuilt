@@ -1,0 +1,58 @@
+//====================================================================================================================================================
+// Copyright 2026 Lake Orion Robotics FIRST Team 302
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"),
+// to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
+// and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+// OR OTHER DEALINGS IN THE SOFTWARE.
+//====================================================================================================================================================
+
+#include "mechanisms/configs/MechanismConfig2026.h"
+#include "mechanisms/chassis/Chassis.h"
+#include "mechanisms/configs/MechanismConfigMgr.h"
+#include "mechanisms/configs/RobotElementNames.h"
+#include "mechanisms/vroom/Vroom.h"
+#include "utils/PeriodicLooper.h"
+#include "utils/logging/debug/Logger.h"
+#include "wpi/framework/RobotBase.hpp"
+#include "wpi/hardware/pneumatic/Compressor.hpp"
+
+using std::string;
+
+void MechanismConfig2026::DefineMechanisms()
+{
+    Logger::GetLogger()->LogData(LOGGER_LEVEL::PRINT, string("Initializing mechanism"), string("Chassis"), "");
+    m_chassis = new Chassis(RobotIdentifier::YEARONEROBOT_2026);
+    m_chassis->CreateYearOneRobot2026();
+    m_chassis->InitializeYearOneRobot2026();
+    m_mechanismMap[MechanismTypes::MECHANISM_TYPE::CHASSIS] = m_chassis;
+
+    Logger::GetLogger()->LogData(LOGGER_LEVEL::PRINT, string("Initializing mechanism"), string("Vroom"), "");
+    m_vroom = new Vroom(RobotIdentifier::YEARONEROBOT_2026);
+    m_vroom->CreateYearOneRobot2026();
+    m_vroom->InitializeYearOneRobot2026();
+    m_mechanismMap[MechanismTypes::MECHANISM_TYPE::VROOM] = m_vroom;
+}
+
+BaseMech *MechanismConfig2026::GetMechanism(MechanismTypes::MECHANISM_TYPE mechType)
+{
+    auto itr = m_mechanismMap.find(mechType);
+    if (itr != m_mechanismMap.end())
+    {
+        return itr->second;
+    }
+    return nullptr;
+}
+void MechanismConfig2026::DefineLEDs()
+{
+}
+
+void MechanismConfig2026::DefineCompressor()
+{
+}

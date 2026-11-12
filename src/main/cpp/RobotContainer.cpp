@@ -1,4 +1,3 @@
-
 //====================================================================================================================================================
 // Copyright 2026 Lake Orion Robotics FIRST Team 302
 //
@@ -16,8 +15,8 @@
 
 #include "RobotContainer.h"
 
-#include "mechanisms/configs/MechanismConfigMgr.h"
 #include "mechanisms/chassis/ChassisContainer.h"
+#include "mechanisms/configs/MechanismConfigMgr.h"
 #include "mechanisms/vroom/VroomContainer.h"
 #include "wpi/system/RobotController.hpp"
 

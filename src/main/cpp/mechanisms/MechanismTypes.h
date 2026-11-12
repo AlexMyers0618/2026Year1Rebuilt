@@ -1,4 +1,3 @@
-
 //====================================================================================================================================================
 // Copyright 2026 Lake Orion Robotics FIRST Team 302
 //
@@ -32,8 +31,8 @@ public:
 	enum MECHANISM_TYPE
 	{
 		UNKNOWN_MECHANISM = -1,
-        CHASSIS,
-        VROOM,    
+		CHASSIS,
+		VROOM,
 		MAX_MECHANISM_TYPES
 	};
 

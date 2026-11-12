@@ -1,4 +1,3 @@
-
 //====================================================================================================================================================
 // Copyright 2026 Lake Orion Robotics FIRST Team 302
 //
@@ -18,11 +17,10 @@
 #include "mechanisms/vroom/commands/VroomLongShotCommand.h"
 #include "mechanisms/vroom/Vroom.h"
 
-
 using namespace VroomCommands;
 
-static constexpr double m_feedinatorTarget{ 0.0 };
-static constexpr double m_launchinatorTarget{ 0.0 };
+static constexpr double m_feedinatorTarget{12.0};
+static constexpr double m_launchinatorTarget{12.0};
 
 VroomLongShotCommand::VroomLongShotCommand(Vroom *mechanism) : wpi::cmd::CommandHelper<DragonTimedCommand, VroomLongShotCommand>(mechanism), m_mechanism(mechanism)
 {
@@ -33,7 +31,7 @@ VroomLongShotCommand::VroomLongShotCommand(Vroom *mechanism) : wpi::cmd::Command
 void VroomLongShotCommand::Init()
 {
     m_mechanism->SetCurrentState(Vroom::STATE_LONG_SHOT);
-    
+
     // Motor targets for LongShot
     m_mechanism->UpdateTargetFeedinatorVoltageOut(m_feedinatorTarget);
     m_mechanism->UpdateTargetLaunchinatorVoltageOut(m_launchinatorTarget);
