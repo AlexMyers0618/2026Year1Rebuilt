@@ -87,8 +87,8 @@
                     "control_data": [
                         {
                             "name": "PercentOut",
-                            "ControlDevice": "CTRE",
-                            "ControlRequest": "DutyCycleOut",
+                            "ControlDevice": "REV",
+                            "ControlRequest": "kDutyCycle",
                             "Unit": "double",
                             "p": 0.0,
                             "i": 0.0,
@@ -235,7 +235,7 @@
                                 {
                                     "HardwareName": "Feedinator",
                                     "Enabled": true,
-                                    "TargetValue": 0.0,
+                                    "TargetValue": 12.0,
                                     "ControlData": "VoltageOut",
                                     "Unit": "double"
                                 },
@@ -255,14 +255,14 @@
                                 {
                                     "HardwareName": "Feedinator",
                                     "Enabled": true,
-                                    "TargetValue": 0.0,
+                                    "TargetValue": -12.0,
                                     "ControlData": "VoltageOut",
                                     "Unit": "double"
                                 },
                                 {
                                     "HardwareName": "Launchinator",
                                     "Enabled": true,
-                                    "TargetValue": 0.0,
+                                    "TargetValue": -10.0,
                                     "ControlData": "VoltageOut",
                                     "Unit": "double"
                                 }
@@ -282,7 +282,7 @@
                                 {
                                     "HardwareName": "Launchinator",
                                     "Enabled": true,
-                                    "TargetValue": 0.0,
+                                    "TargetValue": 10.0,
                                     "ControlData": "VoltageOut",
                                     "Unit": "double"
                                 }
@@ -295,14 +295,14 @@
                                 {
                                     "HardwareName": "Feedinator",
                                     "Enabled": true,
-                                    "TargetValue": 0.0,
+                                    "TargetValue": 6.0,
                                     "ControlData": "VoltageOut",
                                     "Unit": "double"
                                 },
                                 {
                                     "HardwareName": "Launchinator",
                                     "Enabled": true,
-                                    "TargetValue": 0.0,
+                                    "TargetValue": 10.0,
                                     "ControlData": "VoltageOut",
                                     "Unit": "double"
                                 }
@@ -322,7 +322,7 @@
                                 {
                                     "HardwareName": "Launchinator",
                                     "Enabled": true,
-                                    "TargetValue": 0.0,
+                                    "TargetValue": 12.0,
                                     "ControlData": "VoltageOut",
                                     "Unit": "double"
                                 }
@@ -335,14 +335,14 @@
                                 {
                                     "HardwareName": "Feedinator",
                                     "Enabled": true,
-                                    "TargetValue": 0.0,
+                                    "TargetValue": 12.0,
                                     "ControlData": "VoltageOut",
                                     "Unit": "double"
                                 },
                                 {
                                     "HardwareName": "Launchinator",
                                     "Enabled": true,
-                                    "TargetValue": 0.0,
+                                    "TargetValue": 12.0,
                                     "ControlData": "VoltageOut",
                                     "Unit": "double"
                                 }

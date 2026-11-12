@@ -1,4 +1,3 @@
-
 //====================================================================================================================================================
 // Copyright 2026 Lake Orion Robotics FIRST Team 302
 //
@@ -23,7 +22,7 @@ class Vroom;
 
 namespace VroomCommands
 {
-    class VroomLongShotCommand :  public wpi::cmd::CommandHelper<DragonTimedCommand, VroomLongShotCommand>
+    class VroomLongShotCommand : public wpi::cmd::CommandHelper<DragonTimedCommand, VroomLongShotCommand>
     {
     public:
         VroomLongShotCommand() = delete;

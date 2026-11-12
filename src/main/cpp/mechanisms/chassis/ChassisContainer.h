@@ -1,4 +1,3 @@
-
 //====================================================================================================================================================
 // Copyright 2026 Lake Orion Robotics FIRST Team 302
 //
@@ -76,7 +75,6 @@ private:
     // Chassis command classes
     wpi::cmd::Trigger GetArcadeDriveTrigger();
     wpi::cmd::Trigger GetTankDriveTrigger();
-
 
     static ChassisContainer *m_instance;
 

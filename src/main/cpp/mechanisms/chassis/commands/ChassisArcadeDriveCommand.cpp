@@ -1,4 +1,3 @@
-
 //====================================================================================================================================================
 // Copyright 2026 Lake Orion Robotics FIRST Team 302
 //
@@ -17,10 +16,9 @@
 
 #include "mechanisms/chassis/commands/ChassisArcadeDriveCommand.h"
 #include "mechanisms/chassis/Chassis.h"
-
+#include "teleopcontrol/TeleopControl.h"
 
 using namespace ChassisCommands;
-
 
 ChassisArcadeDriveCommand::ChassisArcadeDriveCommand(Chassis *mechanism) : wpi::cmd::CommandHelper<DragonTimedCommand, ChassisArcadeDriveCommand>(mechanism), m_mechanism(mechanism)
 {
@@ -31,12 +29,13 @@ ChassisArcadeDriveCommand::ChassisArcadeDriveCommand(Chassis *mechanism) : wpi::
 void ChassisArcadeDriveCommand::Init()
 {
     m_mechanism->SetCurrentState(Chassis::STATE_ARCADE_DRIVE);
-    
+
     // Motor targets for ArcadeDrive
 }
 
 void ChassisArcadeDriveCommand::Run()
 {
+    m_mechanism->GetDifferentialDrive().ArcadeDrive(TeleopControl::GetInstance()->GetAxisValue(TeleopControlFunctions::HOLONOMIC_DRIVE_FORWARD), TeleopControl::GetInstance()->GetAxisValue(TeleopControlFunctions::HOLONOMIC_DRIVE_ROTATE));
 }
 
 void ChassisArcadeDriveCommand::Exit(bool interrupted)
