@@ -21,7 +21,7 @@
 using namespace VroomCommands;
 
 static constexpr double m_feedinatorTarget{0.0};
-static constexpr double m_launchinatorTarget{0.0};
+static constexpr double m_launchinatorTarget{10.0};
 
 VroomSpinUpShortCommand::VroomSpinUpShortCommand(Vroom *mechanism) : wpi::cmd::CommandHelper<DragonTimedCommand, VroomSpinUpShortCommand>(mechanism), m_mechanism(mechanism)
 {
