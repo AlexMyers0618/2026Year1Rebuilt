@@ -159,11 +159,14 @@ inline const robin_hood::unordered_map<TeleopControlFunctions::FUNCTION, const T
     {TeleopControlFunctions::RESET_POSITION, driverDPad90},
     {TeleopControlFunctions::ROBOT_ORIENTED_DRIVE, driverLStickPressed},
     {TeleopControlFunctions::SYSID_MODIFER, driverSelectButton},
+    {TeleopControlFunctions::INTAKE, driverRBumper},
+    {TeleopControlFunctions::EXPEL, driverLBumper},
 
     // Season Specific Driver Controls
 
     // Co-Pilot Controls
     {TeleopControlFunctions::SHORT_LAUNCH, copilotAButton},
+    {TeleopControlFunctions::LONG_LAUNCH, copilotYButton},
 };
 
 constexpr TeleopControlAxis driverLJoystickX = {TeleopControlMappingEnums::DRIVER, TeleopControlMappingEnums::LEFT_JOYSTICK_X, TeleopControlMappingEnums::APPLY_STANDARD_DEADBAND, TeleopControlMappingEnums::AXIS_PROFILE::LINEAR, TeleopControlMappingEnums::REVERSED, 1.0};

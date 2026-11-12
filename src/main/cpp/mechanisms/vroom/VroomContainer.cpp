@@ -88,7 +88,9 @@ void VroomContainer::ConfigureBindings()
     // Default Command
     m_vroom->SetDefaultCommand(m_vroom->GetOffCommand());
 
-    GetSpinUpShortTrigger().WhileTrue(m_vroom->GetSpinUpShortCommand().AndThen(m_vroom->GetLongShotCommand()));
+    GetIntakeTrigger().WhileTrue(m_vroom->GetIntakeCommand());
+    GetExpelTrigger().WhileTrue(m_vroom->GetExpelCommand());
+    GetSpinUpLongTrigger().WhileTrue(m_vroom->GetSpinUpLongCommand().AndThen(m_vroom->GetLongShotCommand()));
 
     Logger::GetLogger()->LogData(LOGGER_LEVEL::PRINT, std::string("VroomContainer"), std::string("Configured"), std::string("Vroom"));
 }
@@ -123,8 +125,7 @@ wpi::cmd::Trigger VroomContainer::GetIntakeTrigger()
     return wpi::cmd::RobotModeTriggers::Teleop() && TeleopControl::GetInstance()->GetCommandTrigger(TeleopControlFunctions::Function);
     */
 
-    return wpi::cmd::Trigger([]()
-                             { return false; });
+    return wpi::cmd::RobotModeTriggers::Teleop() && TeleopControl::GetInstance()->GetCommandTrigger(TeleopControlFunctions::INTAKE);
 }
 wpi::cmd::Trigger VroomContainer::GetExpelTrigger()
 {
@@ -178,11 +179,8 @@ wpi::cmd::Trigger VroomContainer::GetSpinUpLongTrigger()
     return wpi::cmd::Trigger([mech]()
                              { return mech->Method; });
     or
-    return wpi::cmd::RobotModeTriggers::Teleop() && TeleopControl::GetInstance()->GetCommandTrigger(TeleopControlFunctions::Function);
     */
-
-    return wpi::cmd::Trigger([]()
-                             { return false; });
+    return wpi::cmd::RobotModeTriggers::Teleop() && TeleopControl::GetInstance()->GetCommandTrigger(TeleopControlFunctions::LONG_LAUNCH);
 }
 wpi::cmd::Trigger VroomContainer::GetLongShotTrigger()
 {
@@ -193,9 +191,7 @@ wpi::cmd::Trigger VroomContainer::GetLongShotTrigger()
     return wpi::cmd::Trigger([mech]()
                              { return mech->Method; });
     or
-    return wpi::cmd::RobotModeTriggers::Teleop() && TeleopControl::GetInstance()->GetCommandTrigger(TeleopControlFunctions::Function);
-    */
-
+     */
     return wpi::cmd::Trigger([]()
                              { return false; });
 }

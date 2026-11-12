@@ -35,6 +35,8 @@ void VroomSpinUpLongCommand::Init()
     // Motor targets for SpinUpLong
     m_mechanism->UpdateTargetFeedinatorVoltageOut(m_feedinatorTarget);
     m_mechanism->UpdateTargetLaunchinatorVoltageOut(m_launchinatorTarget);
+    m_timer.Reset();
+    m_timer.Start();
 }
 
 void VroomSpinUpLongCommand::Run()
@@ -43,9 +45,10 @@ void VroomSpinUpLongCommand::Run()
 
 void VroomSpinUpLongCommand::Exit(bool interrupted)
 {
+    m_timer.Stop();
 }
 
 bool VroomSpinUpLongCommand::IsDone()
 {
-    return false; // Default continuous execution
+    return m_timer.HasElapsed(1_s);
 }
