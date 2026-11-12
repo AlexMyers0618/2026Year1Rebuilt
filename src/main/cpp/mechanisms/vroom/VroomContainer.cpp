@@ -87,6 +87,9 @@ void VroomContainer::ConfigureBindings()
     // Default Command
     m_vroom->SetDefaultCommand(m_vroom->GetOffCommand());
 
+    GetIntakeTrigger().WhileTrue(m_vroom->GetIntakeCommand());
+    GetExpelTrigger().WhileTrue(m_vroom->GetExpelCommand());
+
     Logger::GetLogger()->LogData(LOGGER_LEVEL::PRINT, std::string("VroomContainer"), std::string("Configured"), std::string("Vroom"));
 }
 
@@ -120,8 +123,7 @@ wpi::cmd::Trigger VroomContainer::GetIntakeTrigger()
     return wpi::cmd::RobotModeTriggers::Teleop() && TeleopControl::GetInstance()->GetCommandTrigger(TeleopControlFunctions::Function);
     */
 
-    return wpi::cmd::Trigger([]()
-                             { return false; });
+    return wpi::cmd::RobotModeTriggers::Teleop() && TeleopControl::GetInstance()->GetCommandTrigger(TeleopControlFunctions::INTAKE);
 }
 wpi::cmd::Trigger VroomContainer::GetExpelTrigger()
 {

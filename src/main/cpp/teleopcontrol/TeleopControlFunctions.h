@@ -48,7 +48,8 @@ public:
 
         // Mechanisms specific
         // Intake
-        INTAKE
+        INTAKE,
+        EXPEL,
 
     };
 };
