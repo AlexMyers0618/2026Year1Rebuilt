@@ -46,7 +46,8 @@ public:
 
         // Mechanisms specific
         // Intake
-        INTAKE
+        INTAKE,
+        SHORT_LAUNCH,
 
     };
 };

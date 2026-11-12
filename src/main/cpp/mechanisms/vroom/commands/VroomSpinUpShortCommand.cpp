@@ -18,11 +18,10 @@
 #include "mechanisms/vroom/commands/VroomSpinUpShortCommand.h"
 #include "mechanisms/vroom/Vroom.h"
 
-
 using namespace VroomCommands;
 
-static constexpr double m_feedinatorTarget{ 0.0 };
-static constexpr double m_launchinatorTarget{ 0.0 };
+static constexpr double m_feedinatorTarget{0.0};
+static constexpr double m_launchinatorTarget{0.0};
 
 VroomSpinUpShortCommand::VroomSpinUpShortCommand(Vroom *mechanism) : wpi::cmd::CommandHelper<DragonTimedCommand, VroomSpinUpShortCommand>(mechanism), m_mechanism(mechanism)
 {
@@ -33,10 +32,13 @@ VroomSpinUpShortCommand::VroomSpinUpShortCommand(Vroom *mechanism) : wpi::cmd::C
 void VroomSpinUpShortCommand::Init()
 {
     m_mechanism->SetCurrentState(Vroom::STATE_SPIN_UP_SHORT);
-    
+
     // Motor targets for SpinUpShort
     m_mechanism->UpdateTargetFeedinatorVoltageOut(m_feedinatorTarget);
     m_mechanism->UpdateTargetLaunchinatorVoltageOut(m_launchinatorTarget);
+
+    m_timer.Reset();
+    m_timer.Start();
 }
 
 void VroomSpinUpShortCommand::Run()
@@ -49,5 +51,5 @@ void VroomSpinUpShortCommand::Exit(bool interrupted)
 
 bool VroomSpinUpShortCommand::IsDone()
 {
-    return false; // Default continuous execution
+    return m_timer.HasElapsed(wpi::units::second_t(1.0)); // Default continuous execution
 }

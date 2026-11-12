@@ -23,7 +23,7 @@ class Vroom;
 
 namespace VroomCommands
 {
-    class VroomSpinUpShortCommand :  public wpi::cmd::CommandHelper<DragonTimedCommand, VroomSpinUpShortCommand>
+    class VroomSpinUpShortCommand : public wpi::cmd::CommandHelper<DragonTimedCommand, VroomSpinUpShortCommand>
     {
     public:
         VroomSpinUpShortCommand() = delete;
@@ -37,5 +37,6 @@ namespace VroomCommands
 
     private:
         Vroom *m_mechanism;
+        wpi::Timer m_timer;
     };
 }
