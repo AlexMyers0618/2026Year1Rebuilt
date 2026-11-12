@@ -49,6 +49,7 @@ public:
                 // Mechanisms specific
                 // Intake
                 INTAKE,
+                EXPEL,
                 SPIN_UP_LONG,
                 LONG_LAUNCH,
         };
